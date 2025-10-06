@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mary Hope Saladar - Personal Website</title>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #4A4A4A;
+            background: linear-gradient(-45deg, #FFF5EE 0%, #FFE4E1 20%, #F0E68C 40%, #E0FFFF 60%, #F8F8FF 80%, #DDA0DD 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 182, 193, 0.05) 2px,
+                rgba(255, 182, 193, 0.05) 4px
+            );
+            animation: waveShift 30s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes waveShift {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100px); }
+        }
+
+        .floating-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .light {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: twinkle 8s infinite ease-in-out;
+        }
+
+        .light:nth-child(1) { top: 15%; left: 15%; width: 40px; height: 40px; animation-delay: 0s; }
+        .light:nth-child(2) { top: 30%; left: 70%; width: 30px; height: 30px; animation-delay: 2s; }
+        .light:nth-child(3) { top: 60%; left: 25%; width: 50px; height: 50px; animation-delay: 4s; }
+        .light:nth-child(4) { top: 80%; left: 80%; width: 35px; height: 35px; animation-delay: 6s; }
+        .light:nth-child(5) { top: 45%; left: 50%; width: 45px; height: 45px; animation-delay: 1s; }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 0.8; transform: scale(1.2); }
+        }
+
+        header {
+            background: rgba(255, 245, 238, 0.95);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo-pic {
+            max-width: 150px;
+            height: auto;
+            border-radius: 50%;
+            border: 3px solid #FF69B4;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.97);
+            margin-bottom: 3rem;
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+            border: 2px solid rgba(255, 105, 180, 0.15);
+        }
+
+        h1, h2 {
+            color: #FF1493;
+            text-align: center;
+        }
+
+        p {
+            font-style: italic;
+            text-align: justify;
+        }
+
+        .profile-pic {
+            display: block;
+            margin: 2rem auto;
+            width: 200px;
+            height: 260px;
+            border-radius: 40%;
+            object-fit: cover;
+            border: 6px solid #FF69B4;
+            box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .profile-pic:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(255, 105, 180, 0.5);
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, rgba(255, 248, 220, 0.8), rgba(255, 182, 193, 0.7));
+            padding: 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .favorite-item {
+            background: rgba(248, 248, 255, 0.8);
+            padding: 1.5rem;
+            border-radius: 18px;
+            text-align: center;
+            border: 3px dotted #FFB6C1;
+            transition: transform 0.3s ease;
+        }
+
+        .favorite-item:hover {
+            transform: scale(1.03);
+        }
+
+        a {
+            color: #FF1493;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+            text-align: center;
+            padding: 0;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        /* Contact styling */
+        .contact-list i {
+            color: #FF69B4;
+            margin-right: 8px;
+            font-size: 1.2rem;
+        }
+
+        .contact-list li {
+            margin: 0.8rem 0;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .contact-list a {
+            color: #FF1493;
+            text-decoration: none;
+        }
+
+        .contact-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="floating-lights">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+
+    <header>
+        <img src="logo1.png" alt="Mary Hope Logo" class="logo-pic">
+    </header>
+
+    <main>
+        <section class="section">
+            <h1>Hi! I'm Mary 💕</h1>
+            <img src="profile1.jpg" alt="Mary Hope Saladar Profile" class="profile-pic">
+            <h2>Welcome to my Website!</h2>
+        </section>
+
+        <section class="section">
+            <h2>About Me 🌸</h2>
+            <p>I'm Mary Hope Saladar, a shy yet adventurous girl from Lanot Grande, Lambunao, Iloilo. As a BS Information Technology student at WVSU Lambunao Campus, I enjoy building creative projects and exploring new ideas in ICT to improve myself and bring joy to others.</p>
+        </section>
+
+        <section class="section">
+            <h2>Education 📚</h2>
+            <p>Education is the key to knowledge, shaping our future and helping us chase our dreams.</p>
+            <div class="grid-container">
+                <div class="grid-item">🏫 <h3>Elementary</h3><p>Lanot Grande Elementary School - 2017</p></div>
+                <div class="grid-item">🎓 <h3>High School</h3><p>Lambunao National High School - 2021</p></div>
+                <div class="grid-item">🎒 <h3>Senior High</h3><p>Lambunao National High School - 2023</p></div>
+                <div class="grid-item">📖 <h3>College</h3><p>WVSU-Lambunao Campus - BS Information Technology</p></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Skills 💻</h2>
+            <ul>
+                <li>🎨 Web Development (HTML, CSS)</li>
+                <li>🌐 Digital Exploration</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Favorite Food 🍨🍔🍕</h2>
+            <div class="favorites-grid">
+                <div class="favorite-item">
+                    <h3>Ice Cream</h3>
+                    <img src="icecream4.jpeg" alt="Ice Cream" width="100%">
+                    <p>Cool and creamy, perfect for a sunny afternoon.</p>
+                </div>
+                <div class="favorite-item">
+                    <h3>Burger</h3>
+                    <img src="burger8.jpeg" alt="Burger" width="100%">
+                    <p>Juicy and satisfying, my go-to comfort food.</p>
+                </div>
+                <div class="favorite-item">
+                    <h3>Pizza</h3>
+                    <img src="pizza7.jpeg" alt="Pizza" width="100%">
+                    <p>Cheesy pizza and pure happiness!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Gallery 📸</h2>
+            <div class="favorites-grid">
+                <div class="favorite-item"><img src="glry1.jpg" alt="Gallery photo 1" width="100%"></div>
+                <div class="favorite-item"><img src="glry2.jpg" alt="Gallery photo 2" width="100%"></div>
+                <div class="favorite-item"><img src="glry3.jpg" alt="Gallery photo 3" width="100%"></div>
+                <div class="favorite-item"><img src="glry4.jpeg" alt="Gallery photo 4" width="100%"></div>
+                <div class="favorite-item"><img src="glry5.jpg" alt="Gallery photo 5" width="100%"></div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Hobbies 🎉</h2>
+            <ul>
+                <li>🎨 Drawing</li>
+                <li>🍳 Cooking</li>
+                <li>😴 Sleeping</li>
+                <li>🎧 Listening to music</li>
+                <li>🏞️ Adventure</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Favorite Movies 🎥</h2>
+            <div class="favorites-grid">
+                <div class="favorite-item">
+                    💕 <h3>Romantic Films</h3>
+                    <img src="romanticmovie6.jpg" alt="Romantic Film" width="100%">
+                    <p>Stories of love that warm the soul.</p>
+                </div>
+                <div class="favorite-item">
+                    👻 <h3>Horror Movies</h3>
+                    <img src="horrormovie5.jpeg" alt="Horror Movie" width="100%">
+                    <p>Exciting chills and unexpected twists.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <h2>Contact 📞</h2>
+            <ul class="contact-list">
+                <li><i class="fa-solid fa-envelope"></i><strong>Email:</strong> saladarmaryhope07@gmail.com</li>
+                <li><i class="fa-brands fa-facebook"></i><strong>Facebook:</strong> 
+                    <a href="https://www.facebook.com/hopekytsldar" target="_blank">facebook.com/hopekytsldar</a>
+                </li>
+                <li><i class="fa-solid fa-phone"></i><strong>Phone:</strong> +63 855 058 570</li>
+            </ul>
+        </section>
+    </main>
+</body>
+</html>
